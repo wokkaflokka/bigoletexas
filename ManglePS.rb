@@ -57,6 +57,12 @@ File.open(file,'r').each_line do |line|
   end
 end
 
+
+
+=begin
+
+  Convert to Java
+
 # Not for x, only for y
 # xs.map! { |item| max_x - item.to_f }
 ys.map! { |item| max_y - item.to_f }
@@ -93,5 +99,42 @@ File.open('java-strings.tmp','w') do |file|
     i += 1
   end
 end
+=end
+
+ys.map! { |item| max_y - item.to_f }
+
+xstring = 'var xPoints = new Array('
+max = xs.size
+xs.each_with_index do |x,i|
+  xstring << "\"#{x}\", " unless i == (max -1)
+  xstring << "\"#{x}\"" if i == (max -1)
+end
+xstring << ');'
+ystring = 'var yPoints = new Array('
+max = ys.size
+ys.each_with_index do |y,i|
+  ystring << "\"#{y}\", " unless i == (max -1)
+  ystring << "\"#{y}\"" if i == (max -1)
+end
+ystring << ');'
+
+i = 0
+File.open('javascript.tmp','w') do |file|
+  file.write(xstring + "\n\n")
+  file.write(ystring + "\n\n")
+  commands.each do |command|
+    if command.include?('curve')
+      file.write("texas.bezierCurveTo(xPoints[#{i}],yPoints[#{i}],xPoints[#{i+1}],yPoints[#{i+1}],xPoints[#{i+2}],yPoints[#{i+2}]);\n")
+      i += 2
+    elsif command.include?('line')
+      file.write("texas.lineTo(xPoints[#{i}],yPoints[#{i}]);\n")
+    else
+      file.write("texas.moveTo(xPoints[#{i}],yPoints[#{i}]);\n")
+    end
+    i += 1
+  end
+end
+
+# Convert to Javascript
 
 exit(0)
