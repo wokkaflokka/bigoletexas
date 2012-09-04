@@ -9,7 +9,10 @@
 #
 ################################################
 
-file = 'Texas.eps'
+file = 'ManglePS.tmp'
+
+max_x = 860.0
+max_y = 880.0
 
 commands = []
 xs = []
@@ -54,8 +57,12 @@ File.open(file,'r').each_line do |line|
   end
 end
 
-xstring = 'int xPoints[] = {'
-ystring = 'int yPoints[] = {'
+# Not for x, only for y
+# xs.map! { |item| max_x - item.to_f }
+ys.map! { |item| max_y - item.to_f }
+
+xstring = 'double xPoints[] = {'
+ystring = 'double yPoints[] = {'
 max = xs.size
 xs.each_with_index do |x,i|
   xstring << "#{x}, " unless i == (max -1)
