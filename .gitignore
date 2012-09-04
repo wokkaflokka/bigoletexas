@@ -3,3 +3,6 @@ data
 *~
 *.html
 temp.*
+*.tmp
+*.temp
+
