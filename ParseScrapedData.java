@@ -44,21 +44,21 @@ public final class ParseScrapedData {
 			break;
 		    case 1:
 			cleanData   = decompose(currentData).trim().replaceAll("[^a-zA-Z\\s]+","");
-			out.write("\tGeographic entity: " + cleanData + "\n");
+			out.write("\t\"Geographic entity\": \"" + cleanData + "\"\n");
 			break;
 		    case 2:
 			/* Current Data is empty */
 			break;
 		    case 3:
 			cleanData   = decompose(currentData).trim().replaceAll(",","");
-			out.write("\tArea: " + cleanData + "\n");
+			out.write("\t\"Area\": \"" + cleanData + "\"\n");
 			break;
 		    case 4:
 			/* Current Data is empty */
 			break;
 		    case 5:
 			cleanData   = decompose(currentData).trim();
-			out.write("\tNotes: " + cleanData + "\n");
+			out.write("\t\"Notes\": \"" + cleanData + "\"\n");
 			break;
 		    case 6:
 			/* Current Data is empty */
