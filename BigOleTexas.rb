@@ -183,16 +183,30 @@ module Texas::Views
     div.formWrapper! :class => "container_12" do
       div.grid_12 do end
       div.grid_12 do
-        "Howdy, y'all! In case you were hankerin' to know, Big Ole Texas is a StumpGrind Production.".upcase
+        text! "Howdy, y'all! In case you were hankerin' to know, Big Ole Texas is a StumpGrindin' Production.".upcase
+        br
+        br
       end
       div.grid_12 do
-        "We sure hope you enjoyed it, as there is more to come! But don't be a stranger, ya hear? Shoot us an e-mail at ??? ".upcase
+        text! "We sure hope you enjoyed it, as there is more to come! But don't be a stranger, ya hear? Shoot us an e-mail at 'thebossman@stumpgrindin.com'.".upcase
       end
       div.grid_12 do
-        "Or, if you're one of them city-slicker types, you might reckon to check us on Twitter at ??? ".upcase
+        text! "Or, if you're one of them city-slicker types, you might reckon to check us out on ".upcase
+        a :href => "https://twitter.com/stumpgrindinc" do 
+          "Twitter.".upcase
+        end
       end
       div.grid_12 do
-        "Want to know more about all things Texas? Check out [ ... ]! Y'all come back real soon, now, ya hear? ".upcase
+        br  
+        text! "Want to know more about all things Texas? Check out ".upcase
+        a :href => "https://www.facebook.com/allthingstexan" do
+          "All Things Texan!".upcase
+        end
+        br
+      end
+      div.grid_12 do
+          text! "Y'all come back real soon, now, ya hear? ".upcase
+          br
       end
       div.grid_12 do end
     end
@@ -202,16 +216,20 @@ module Texas::Views
     div.formWrapper! :class => "container_12" do
       div.grid_12 do end
       div.grid_12 do
-        "Woowee, folks! Hosting a website is TUFF business! That's why we wanted to give a quick holler to the kind folks down at Dotgeek!".upcase
+        text! "Woowee, folks! Hosting a website is TUFF business! That's why we wanted to give a quick holler to the kind folks down at Dotgeek!".upcase
+        br
       end
       div.grid_12 do
-        "So thanks, Dotgeek, for streamlining the development of this site (and giving us some hosting)!".upcase
+        text! "So thanks, Dotgeek, for streamlining the development of this site (and giving us some hosting)!".upcase
+        br
       end
       div.grid_12 do
-        "We Texans aren't ones to take things lightly, so for your service to this great state, we've bestowed you the title of Honorary Texan's.".upcase
+        text! "We Texans aren't ones to take things lightly, so for your service to this great state, we've bestowed you the title of Honorary Texan's.".upcase
       end
       div.grid_12 do
-        img.honorary! :src => 'http://wokkaflokka.dotgeek.org/honorary.png'
+        a :href => "http://dotgeek.org" do
+          img.honorary! :src => 'http://wokkaflokka.dotgeek.org/honorary.png'
+        end
       end
       div.grid_12 do 
         "(Just don't get uppity like them yankee folk, ya hear now?!)".upcase
