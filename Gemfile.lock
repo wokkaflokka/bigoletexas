@@ -9,6 +9,8 @@ GEM
     mab (0.0.3)
     newrelic_rpm (3.13.0.299)
     rack (1.6.4)
+    rpm_contrib (2.2.0)
+      newrelic_rpm (>= 3.1.1)
     thin (1.6.3)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0)
@@ -21,6 +23,7 @@ DEPENDENCIES
   camping
   newrelic_rpm
   rack
+  rpm_contrib
   thin
 
 BUNDLED WITH
