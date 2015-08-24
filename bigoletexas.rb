@@ -32,6 +32,20 @@ module Texas::Controllers
   end
 
   class BigOle < R '/git-sum'
+
+    @@texas_bigger = []
+    @@texas_smaller  = []
+
+    @@search_data = YAML::load_file('data/base.yaml')
+
+    File.open('data/texas-bigger.data','r').each_line do |line|
+      @@texas_bigger << line.chomp("\n")
+    end
+
+    File.open('data/texas-smaller.data','r').each_line do |line|
+      @@texas_smaller << line.chomp("\n")
+    end
+
     def get
       redirect '/'
     end
@@ -41,34 +55,21 @@ module Texas::Controllers
         render :fail
       else
         @search_term = input.search_region.to_s
-        if not @texas_bigger or not @search_data or not @texas_smaller
-          @texas_bigger   = []
-          @texas_smaller  = []
-          
-          @search_data   = YAML::load_file('data/base.yaml')
-          
-          File.open('data/texas-bigger.data','r').each_line do |line|
-            @texas_bigger << line.chomp("\n")
-          end
-
-          File.open('data/texas-smaller.data','r').each_line do |line|
-            @texas_smaller << line.chomp("\n")
-          end
-        end
 
         flattened_string = @search_term.downcase.gsub(/\s+/, "")
         
         if flattened_string == "mom"
           @search_term     = "Your Mom"
           flattened_string = "yourmom"
-        end          
+        end
 
-        @texas_bigger.shuffle!
-        @texas_smaller.shuffle!
+        @texas_bigger = Array.new(@@texas_bigger).shuffle!
+        @texas_smaller = Array.new(@@texas_smaller).shuffle!
+        @search_data = @@search_data.clone
 
-        results = @search_data.keys.select{|k| k.downcase.gsub(/\s+/, "") == flattened_string }
+        results = @search_data.keys.select{|k| k.downcase.gsub(/\s+/, '') == flattened_string }
         if results.empty?
-          results  = @search_data.keys.select{|k| k.downcase.gsub(/\s+/,"").include?(flattened_string) }.sort_by{|k|k.size}
+          results  = @search_data.keys.select{|k| k.downcase.gsub(/\s+/, '').include?(flattened_string) }.sort_by{|k|k.size}
         end
         if results.empty?
           render :fail
@@ -103,6 +104,24 @@ module Texas::Controllers
       redirect '/'
     end
   end
+
+  class Static < R '/static/(.+)'
+    MIME_TYPES = {
+        '.css'  => 'text/css',
+        '.js'   => 'text/javascript',
+        '.png'  => 'image/png'
+    }
+    PATH = File.expand_path(File.dirname(__FILE__))
+    def get(path)
+      @headers['Content-Type'] = MIME_TYPES[path[/\.\w+$/, 0]] || 'text/plain'
+      unless path.include? ".." # prevent directory traversal attacks
+        @headers['X-Sendfile'] = "#{PATH}/static/#{path}"
+      else
+        @status = '403'
+        '403'
+      end
+    end
+  end
 end
 
 module Texas::Views
@@ -110,29 +129,15 @@ module Texas::Views
   def layout
     html do
       head do
-        link :rel => "shortcut icon", :href => "http://wokkaflokka.dotgeek.org/favicon.ico"
+        link :rel => 'shortcut icon', :href => 'static/image/favicon.ico'
         title { "Big 'Ole Texas" }
-        style :type => "text/css" do
-          File.read('data/reset.css')
-        end
-        style :type => "text/css" do
-          File.read('data/text.css')
-        end 
-        style :type => "text/css" do
-          File.read('data/960.css')
-        end
-        style :type => "text/css" do
-          File.read('data/bot.css')
-        end
-        script :type => "text/javascript" do
-          File.read('js/jquery.js')
-        end
-        script :type => "text/javascript" do
-          File.read('js/breakpoints.js')
-        end
-        script :type => "text/javascript" do
-          File.read('js/adjust-size.js')
-        end
+        link :rel => 'stylesheet', :type => 'text/css', :href => 'static/css/reset.css'
+        link :rel => 'stylesheet', :type => 'text/css', :href =>  'static/css/text.css'
+        link :rel => 'stylesheet', :type => 'text/css', :href => 'static/css/960.css'
+        link :rel => 'stylesheet', :type => 'text/css', :href => 'static/css/bot.css'
+        script :type => 'text/js', :src => 'static/js/jquery.js'
+        script :type => 'text/js', :src => 'static/js/breakpoints.js'
+        script :type => 'text/js', :src => 'static/js/adjust-size.js'
         #script :type => "text/javascript" do
         #  File.read('js/league-gothic.js')
         #end
@@ -146,7 +151,7 @@ module Texas::Views
       body do
         div.header! :class => "container_16 alpha omega" do
           div.bot! :class => "grid_16 alpha omega", :style => "width: 100%;" do
-            img :src => "http://wokkaflokka.dotgeek.org/header.png", :border => "0", :width => "100%", :height => "15%"
+            img :src => 'static/image/header.png', :border => "0", :width => "100%", :height => "15%"
           end
         end
         div.bodyContainer! do
@@ -158,19 +163,19 @@ module Texas::Views
           div :class => "grid_2" do end
           div.howdy! :class => "grid_2" do
             a :href => '/howdy-yall' do
-              img :src => "http://wokkaflokka.dotgeek.org/howdy.png", :border => "0";
+              img :src => "static/image/howdy.png", :border => "0";
             end
           end
           div :class => "grid_1" do end
           div.logo! :class => "grid_2" do
             a :href => '/' do
-              img :src => "http://wokkaflokka.dotgeek.org/logo.png", :border => "0";
+              img :src => "static/image/logo.png", :border => "0";
             end
           end
           div :class => "grid_1" do end
           div.thanks! :class => "grid_2" do
             a :href => '/thanks-yall' do
-              img :src => "http://wokkaflokka.dotgeek.org/thanks.png", :border => "0";
+              img :src => "static/image/thanks.png", :border => "0";
             end
           end
           div :class => "grid_2" do end
@@ -228,7 +233,7 @@ module Texas::Views
       end
       div.grid_12 do
         a :href => "http://dotgeek.org" do
-          img.honorary! :src => 'http://wokkaflokka.dotgeek.org/honorary.png'
+          img.honorary! :src => 'static/image/honorary.png'
         end
       end
       div.grid_12 do 
@@ -285,7 +290,7 @@ module Texas::Views
         div.formItem! :class => 'grid_6' do
           form.bigole! :action => R(BigOle), :method => 'post' do
             input.region! :name => 'search_region', :type => 'text', :style => "font-size:30px; font-weight:bold; text-align:center;"; br
-            input.submit! :type => 'image', :src => 'http://wokkaflokka.dotgeek.org/getsome.png', :alt => 'Gitcha Sum TX!'
+            input.submit! :type => 'image', :src => 'static/image/getsome.png', :alt => 'Gitcha Sum TX!'
           end
         end
       end
@@ -294,12 +299,10 @@ module Texas::Views
 
   def gitsum
     div_name = ''
-    script :type => "text/javascript" do
-      File.read('js/rmHeader.js')
-    end
+    script :type => "text/javascript", :src => 'static/js/rmHeader.js'
 
     def trunc(dubble)
-      if (dubble.include? '.')
+      if dubble.include? '.'
        chunks = dubble.split('.')
        "#{chunks[0]}.#{chunks[1][0..1]}"
       else
@@ -353,10 +356,10 @@ module Texas::Views
       if ratio != 1.0
         div.wrapper do
           div.grid_6.raptor_texas! :style => "padding-top: 25px;" do
-            img.r_t! :align => "middle", :src => 'http://wokkaflokka.dotgeek.org/raptor.png'
+            img.r_t! :align => "middle", :src => 'static/image/raptor.png'
           end
           div.grid_6.raptor_other! :style => "padding-top: 25px;" do
-            img.r_o! :align => "middle", :src => 'http://wokkaflokka.dotgeek.org/raptor.png'
+            img.r_o! :align => "middle", :src => 'static/image/raptor.png'
           end
         end
         div.wrapper do
@@ -374,7 +377,7 @@ module Texas::Views
           div.formItem! :style => "position: relative; bottom:0px;" do
             form :action => R(BigOle), :method => 'post' do
               input.grid_4 :name => 'search_region', :type => 'text', :style => "font-size:30px; font-weight:bold; text-align:center;margin-top:45px;"; br
-              input.grid_2 :style => "height:9%;padding-top:42px;", :type => 'image', :src => 'http://wokkaflokka.dotgeek.org/getsome.png', :alt => 'Gitcha Sum TX!'
+              input.grid_2 :style => "height:9%;padding-top:42px;", :type => 'image', :src => 'static/image/getsome.png', :alt => 'Gitcha Sum TX!'
             end
           end
         end
@@ -386,7 +389,7 @@ module Texas::Views
           div.formItem! :style => "position: relative; bottom:0px;" do
             form :action => R(BigOle), :method => 'post' do
               input.grid_4 :name => 'search_region', :type => 'text', :style => "font-size:30px; font-weight:bold; text-align:center;margin-top:45px;"; br
-              input.grid_2 :style => "height:9%; padding-top:15px;", :type => 'image', :src => 'http://wokkaflokka.dotgeek.org/getsome.png', :alt => 'Gitcha Sum TX!'
+              input.grid_2 :style => "height:9%; padding-top:15px;", :type => 'image', :src => 'static/image/getsome.png', :alt => 'Gitcha Sum TX!'
             end
           end
         end
@@ -400,28 +403,22 @@ module Texas::Views
       div_name
     end
     if ratio == 1.0
-      script :type => "text/javascript" do
-        File.read('js/SVG.js')
-      end
+      script :type => "text/javascript", :src => 'static/js/SVG.js'
     else
-      script :type => "text/javascript" do
-        File.read('js/explodeImg.js')
-      end
+      script :type => "text/javascript", :src => 'static/js/explodeImg.js'
     end
   end
 
   def fail
 
-    script :type => "text/javascript" do
-      File.read('js/rmHeader.js')
-    end
+    script :type => "text/javascript", :src => 'static/js/rmHeader.js'
 
     if @search_term.to_s.empty?
       text = [
               "Hold yer horses! Just because we talk slow doesn't mean we are slow. Gotta enter something there first.",
               "Shucks! Ya gotta enter something, ya pinhead!"
       ]
-      t = rand()
+      t = rand
       if t < 0.25 or t > 0.65
         phrase = text[0]
       else
@@ -450,7 +447,7 @@ module Texas::Views
         div.formItem! :style => "position: relative; bottom:0px;" do
           form :action => R(BigOle), :method => 'post' do
             input.grid_4 :name => 'search_region', :type => 'text', :style => "font-size:30px; font-weight:bold; text-align:center;margin-top:45px;"; br
-            input.grid_2 :style => "height:9%;", :type => 'image', :src => 'http://wokkaflokka.dotgeek.org/getsome.png', :alt => 'Gitcha Sum TX!'
+            input.grid_2 :style => "height:9%;", :type => 'image', :src => 'static/image/getsome.png', :alt => 'Gitcha Sum TX!'
           end
         end
       end
@@ -458,9 +455,7 @@ module Texas::Views
     div.percentageContainer! :style => "display: none; visibility: hidden;" do
       "1.00"
     end
-    script :type => "text/javascript" do
-      File.read('js/SVG.js')
-    end
+    script :type => "text/javascript", :src => 'static/js/SVG.js'
   end
 
   def fouroh

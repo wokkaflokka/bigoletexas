@@ -1,3 +1,9 @@
-$LOAD_PATH << File.dirname(Pathname.new(File.expand_path(__FILE__)).realpath.to_s).to_s
-require 'BigOleTexas.rb'
+%w(rack camping camping/session camping/reloader ./bigoletexas).each { | r | require r }
+
+use Rack::Reloader
+use Rack::Static,
+    :urls => %w(/static/css /static/js /static/fonts /static/image),
+    :root => File.expand_path(File.dirname(__FILE__))
+
 run Texas
+
