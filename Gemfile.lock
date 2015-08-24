@@ -7,6 +7,7 @@ GEM
     daemons (1.2.3)
     eventmachine (1.0.8)
     mab (0.0.3)
+    newrelic_rpm (3.13.0.299)
     rack (1.6.4)
     thin (1.6.3)
       daemons (~> 1.0, >= 1.0.9)
@@ -18,6 +19,7 @@ PLATFORMS
 
 DEPENDENCIES
   camping
+  newrelic_rpm
   rack
   thin
 
