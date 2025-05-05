@@ -8,13 +8,12 @@ export default function Thanks() {
       <div className="bodyContainer">
         <div className="formWrapper">
           <div style={{ textAlign: 'center' }}>
-            WOOOWEE, FOLKS! HOSTING A WEBSITE IS TUFF BUSINESS! THAT'S WHY WE WANTED TO GIVE A QUICK HOLLER TO THE KIND FOLKS DOWN AT DOTGEEK!
+            WOOOWEE, FOLKS! HOSTING A WEBSITE IS TUFF BUSINESS! THAT&apos;S WHY WE WANTED TO GIVE A QUICK HOLLER TO THE KIND FOLKS DOWN AT DOTGEEK!
             <br />
             <br />
-            SO THANKS, DOTGEEK, FOR STREAMLINING THE DEVELOPMENT OF THIS SITE (AND GIVING US SOME HOSTING)!
             <br />
             <br />
-            WE TEXANS AREN'T ONES TO TAKE THINGS LIGHTLY, SO FOR YOUR SERVICE TO THIS GREAT STATE, WE'VE BESTOWED YOU THE TITLE OF HONORARY TEXAN'S.
+            WE TEXANS AREN&apos;T ONES TO TAKE THINGS LIGHTLY, SO FOR YOUR SERVICE TO THIS GREAT STATE, WE&apos;VE BESTOWED YOU THE TITLE OF HONORARY TEXAN&apos;S.
             <br />
             <br />
             <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -23,7 +22,7 @@ export default function Thanks() {
               </a>
             </div>
             <br />
-            (JUST DON'T GET UPPITY LIKE THEM YANKEE FOLK, YA HEAR NOW?!)
+            (JUST DON&apos;T GET UPPITY LIKE THEM YANKEE FOLK, YA HEAR NOW?!)
           </div>
         </div>
       </div>

@@ -1,14 +1,14 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-export default function FiveHundred() {
+export default function NotImplemented() {
   return (
     <>
       <Header />
       <div className="bodyContainer">
         <div className="formWrapper">
           <div className="phrase">
-            HOOOWEE! THIS INTERWEB VOODOO IS CORN-FUSING ME! LOOKS LIKE WE LOG-JAMMED OUR PIPES!
+            WELL, I&apos;LL BE DAMNED! LOOKS LIKE OUR SCIENTISTS DONE MESSED UP...
           </div>
         </div>
       </div>

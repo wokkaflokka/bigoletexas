@@ -34,7 +34,7 @@ export default function Home() {
             <div className="phrase" style={{ textAlign: 'center' }}>
               <div className="text">
                 <div style={{ marginBottom: '12px', lineHeight: '1.1' }}>
-                  FOLKS, THERE'S NO DENYING IT.
+                  FOLKS, THERE&apos;S NO DENYING IT.
                 </div>
                 <div style={{ marginBottom: '12px', lineHeight: '1.1' }}>
                   <span style={{ fontSize: '2.1em', fontWeight: 'bold' }}>TEXAS</span>
@@ -43,12 +43,8 @@ export default function Home() {
                   <span>.</span>
                 </div>
                 <div style={{ marginBottom: '12px', lineHeight: '1.1' }}>
-                  <span>EVER WONDER JUST </span>
-                  <span style={{ fontSize: '2.1em', fontWeight: 'bold' }}>HOW</span>
-                  <span> BIG</span>
-                </div>
-                <div style={{ marginBottom: '12px', lineHeight: '1.1' }}>
-                  BIG OLE TEXAS IS?
+                  <span style={{ fontSize: '1.8em' }}>HOW</span>
+                  <span> BIG IS IT?</span>
                 </div>
                 <div style={{ marginBottom: '12px', lineHeight: '1.1' }}>
                   ENTER A COUNTRY OR US STATE

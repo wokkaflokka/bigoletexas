@@ -30,7 +30,7 @@ export class SearchService {
     }
 
     let processedTerm = term;
-    let flattenedString = term.toLowerCase().replace(/\s+/g, '');
+    const flattenedString = term.toLowerCase().replace(/\s+/g, '');
     
     // Check for mom-related terms
     if (['yourmom', 'yomom', 'mom', 'yomomma', 'yomama'].includes(flattenedString)) {

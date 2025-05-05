@@ -7,16 +7,21 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "analyze": "ANALYZE=true next build",
     "clean": "rm -rf .next",
     "optimize": "npm run clean && npm run build"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.1.5",
     "@types/js-yaml": "^4.0.9",
+    "critters": "^0.0.23",
     "js-yaml": "^4.1.0",
     "next": "15.3.1",
+    "postcss": "^8.5.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.1.5"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^15.3.1",
