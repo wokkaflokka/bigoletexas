@@ -1,0 +1,43 @@
+{
+  "name": "nextjs-site",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "analyze": "ANALYZE=true next build",
+    "clean": "rm -rf .next",
+    "optimize": "npm run clean && npm run build"
+  },
+  "dependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "js-yaml": "^4.1.0",
+    "next": "15.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "^15.3.1",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.1",
+    "javascript-obfuscator": "^4.1.1",
+    "terser": "^5.39.0",
+    "terser-webpack-plugin": "^5.3.10",
+    "typescript": "^5"
+  },
+  "next": {
+    "webpack": {
+      "resolveLoader": {
+        "modules": [
+          "node_modules",
+          "./"
+        ]
+      }
+    }
+  }
+}
