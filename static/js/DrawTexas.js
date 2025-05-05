@@ -1,5 +1,10 @@
 var canvas = document.getElementById('canvas');
 
+// Check if Texas has already been drawn
+if (canvas.getAttribute('data-texas-drawn') === 'true') {
+    return;
+}
+
 if (canvas.width < 800) {
     canvas.width = 860;
 }
@@ -169,3 +174,6 @@ texas.bezierCurveTo(xPoints[398],yPoints[398],xPoints[399],yPoints[399],xPoints[
 texas.bezierCurveTo(xPoints[401],yPoints[401],xPoints[402],yPoints[402],xPoints[403],yPoints[403]);
 texas.bezierCurveTo(xPoints[404],yPoints[404],xPoints[405],yPoints[405],xPoints[406],yPoints[406]);
 texas.stroke();
+
+// Mark that Texas has been drawn
+canvas.setAttribute('data-texas-drawn', 'true');

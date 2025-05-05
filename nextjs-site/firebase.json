@@ -1,0 +1,28 @@
+{
+  "hosting": {
+    "public": "out",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/thanks-yall",
+        "destination": "/thanks-yall.html"
+      },
+      {
+        "source": "/howdy-yall",
+        "destination": "/howdy-yall.html"
+      },
+      {
+        "source": "/server-error",
+        "destination": "/server-error.html"
+      },
+      {
+        "source": "/not-implemented",
+        "destination": "/not-implemented.html"
+      }
+    ]
+  }
+}
