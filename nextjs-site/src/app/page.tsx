@@ -25,7 +25,7 @@ export default function Home() {
       <div className="bodyContainer">
         <div className="formWrapper">
           {result ? (
-            <div className="phrase" style={{ textAlign: 'center' }}>
+            <div className="phrase phrase-result" style={{ textAlign: 'center' }}>
               <div ref={phraseRef}>
                 {result.phrase}
               </div>
@@ -43,8 +43,12 @@ export default function Home() {
                   <span>.</span>
                 </div>
                 <div style={{ marginBottom: '12px', lineHeight: '1.1' }}>
-                  <span style={{ fontSize: '1.8em' }}>HOW</span>
-                  <span> BIG IS IT?</span>
+                  <span>EVER WONDER JUST </span>
+                  <span style={{ fontSize: '2.1em' }}>HOW</span>
+                  <span> BIG</span>
+                </div>
+                <div style={{ marginBottom: '12px', lineHeight: '1.1' }}>
+                  <span>BIG OLE TEXAS IS?</span>
                 </div>
                 <div style={{ marginBottom: '12px', lineHeight: '1.1' }}>
                   ENTER A COUNTRY OR US STATE
@@ -65,6 +69,7 @@ export default function Home() {
                       fontWeight: 'bold',
                       textAlign: 'center',
                       width: '100%',
+                      minWidth: '240px',
                       maxWidth: '360px',
                       padding: '10px',
                       border: 'none',
@@ -169,7 +174,7 @@ export default function Home() {
                 <div style={{ marginBottom: '20px', textAlign: 'center' }}>
                   HAVE ANOTHER GO, PARTNER?
                 </div>
-                <form onSubmit={handleSearch} style={{ textAlign: 'center' }}>
+                <form className="search" onSubmit={handleSearch} style={{ textAlign: 'center' }}>
                   <input
                     type="text"
                     name="search_region"
@@ -180,6 +185,7 @@ export default function Home() {
                       fontWeight: 'bold',
                       textAlign: 'center',
                       width: '100%',
+                      minWidth: '240px',
                       maxWidth: '360px',
                       padding: '10px',
                       border: 'none',

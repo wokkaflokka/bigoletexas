@@ -75,7 +75,7 @@ html {
 
 /* Form Wrapper */
 .formWrapper {
-  max-width: 95%;
+  max-width: 960px;
   min-width: 60%;
   min-height: 440px;
   margin: 60px 0 0 0;
@@ -123,12 +123,13 @@ html {
   font-size: 33px;
   line-height: 41px;
   font-weight: bold;
-  width: 100%;
+  width: 90%;
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
   align-items: center;
+  max-width: 960px;
 }
 
 .phrase .text {
@@ -153,6 +154,14 @@ html {
 
   .phrase .search {
     text-align: right;
+  }
+
+  .search {
+    min-width: 320px;
+  }
+
+  .phrase-result {
+    max-width: 75%;
   }
 }
 
@@ -181,5 +190,10 @@ html {
 
   .header img {
     max-height: 80px;
+  }
+
+  .phrase-result {
+    width: 100%;
+    max-width: 100%;
   }
 } 

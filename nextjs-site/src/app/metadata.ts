@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Big Ole Texas',
-  description: 'Ever wonder just how big Big Ole Texas is?',
+  description: 'TEXAS IS BIG. EVER WONDER JUST HOW BIG BIG OLE TEXAS IS? ENTER A COUNTRY OR US STATE. AND SEE FOR YERSELF!',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
