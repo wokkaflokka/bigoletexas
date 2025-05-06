@@ -98,12 +98,14 @@ export default function Home() {
           {result && (
             <>
               {result.ratio !== 1.00 && (
-                <div style={{ 
+                <div className="raptor-container" style={{ 
                   display: 'flex', 
                   justifyContent: 'center',
-                  height: '300px',
                   alignItems: 'center',
-                  margin: '20px 0'
+                  height: '300px',
+                  margin: '20px 0',
+                  width: '100%',
+                  position: 'relative'
                 }}>
                   <div style={{ 
                     textAlign: 'center',
@@ -111,19 +113,30 @@ export default function Home() {
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '50%',
+                    transform: 'translateZ(0)'
                   }}>
-                    <img 
-                      src="/static/image/raptor.png" 
-                      alt="Texas Raptor" 
-                      style={{ 
-                        height: `${raptorSize}px`,
-                        width: 'auto',
-                        transform: `scale(${texasScale})`,
-                        position: 'relative',
-                        top: `${offset}px`
-                      }} 
-                    />
+                    <div style={{
+                      position: 'relative',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      transform: `scale(${texasScale})`,
+                      transformOrigin: 'center center'
+                    }}>
+                      <img 
+                        src="/static/image/raptor.png" 
+                        alt="Texas Raptor" 
+                        style={{ 
+                          height: `${raptorSize}px`,
+                          width: 'auto',
+                          position: 'relative',
+                          top: `${offset}px`
+                        }} 
+                      />
+                    </div>
                     <div style={{ marginTop: '10px' }}>
                       TEXAS
                     </div>
@@ -134,19 +147,30 @@ export default function Home() {
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '50%',
+                    transform: 'translateZ(0)'
                   }}>
-                    <img 
-                      src="/static/image/raptor.png" 
-                      alt="Comparison Raptor" 
-                      style={{ 
-                        height: `${raptorSize}px`,
-                        width: 'auto',
-                        transform: `scale(${searchScale})`,
-                        position: 'relative',
-                        top: `${offset}px`
-                      }} 
-                    />
+                    <div style={{
+                      position: 'relative',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      transform: `scale(${searchScale})`,
+                      transformOrigin: 'center center'
+                    }}>
+                      <img 
+                        src="/static/image/raptor.png" 
+                        alt="Comparison Raptor" 
+                        style={{ 
+                          height: `${raptorSize}px`,
+                          width: 'auto',
+                          position: 'relative',
+                          top: `${offset}px`
+                        }} 
+                      />
+                    </div>
                     <div style={{ marginTop: '10px' }}>
                       {result.searchTerm.toUpperCase()}
                     </div>

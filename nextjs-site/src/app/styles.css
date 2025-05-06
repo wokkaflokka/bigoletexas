@@ -163,6 +163,11 @@ html {
   .phrase-result {
     max-width: 75%;
   }
+
+  /* Raptor container styles for desktop */
+  .raptor-container {
+    flex-direction: row !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -195,5 +200,18 @@ html {
   .phrase-result {
     width: 100%;
     max-width: 100%;
+  }
+
+  /* Raptor container styles for mobile */
+  .raptor-container {
+    flex-direction: column !important;
+    height: auto !important;
+    padding: 20px 0 !important;
+  }
+
+  .raptor-container > div {
+    height: auto !important;
+    width: 100% !important;
+    margin: 20px 0 !important;
   }
 } 
